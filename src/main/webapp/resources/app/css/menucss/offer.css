@@ -1,0 +1,14 @@
+body {
+   /* 
+    
+    font-size: 14px;
+    color: #444; */
+    align : center;
+    margin: 5px auto;
+     width: 1200px;
+    font-family: 'trebuchet MS', 'Lucida sans', Arial;
+    background-image: url("images/menu.jpg");
+      background-size:     cover;                    
+    background-repeat:   no-repeat;
+ 
+}
