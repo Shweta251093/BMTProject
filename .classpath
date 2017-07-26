@@ -4,8 +4,8 @@
 	<classpathentry excluding="**/*.java" kind="src" output="target/test-classes" path="src/test/resources"/>
 	<classpathentry including="**/*.java" kind="src" path="src/main/java"/>
 	<classpathentry excluding="**/*.java" kind="src" path="src/main/resources"/>
-	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v7.0"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="D:/jars/antlr-2.7.7.jar"/>
 	<classpathentry kind="lib" path="D:/jars/aopalliance-1.0.jar"/>
 	<classpathentry kind="lib" path="D:/jars/aspectjrt-1.7.4.jar"/>
@@ -74,6 +74,6 @@
 	<classpathentry kind="lib" path="D:/jars/usertype.core-3.0.0.GA.jar"/>
 	<classpathentry kind="lib" path="D:/jars/usertype.spi-3.0.0.GA.jar"/>
 	<classpathentry kind="lib" path="D:/jars/validation-api-1.0.0.GA.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jre1.8.0_121"/>
+	<classpathentry kind="var" path="lib"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

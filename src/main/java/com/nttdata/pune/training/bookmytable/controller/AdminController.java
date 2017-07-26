@@ -36,7 +36,7 @@ import com.nttdata.pune.training.bookmytable.service.Operation;
 
 public class AdminController {
 
-	private static final int List = 0;
+	//private static final int List = 0;
 
 	@Autowired
 	AdminOperation AdminOperationService;
@@ -375,6 +375,7 @@ public class AdminController {
 
 			} else {
 				String temp1 = array[i];
+				System.out.println(temp1);
 			}
 		}
 		//spliting logic for menu_list
@@ -435,7 +436,7 @@ public class AdminController {
 		String date;
 		// Take only date from date and time together
 		date = dateTime.substring(0, 10);
-		Seats seat = new Seats();
+		//Seats seat = new Seats();
 		model.addAttribute("date", date);
 
 		
@@ -475,7 +476,7 @@ public class AdminController {
 			
 			if(record.size() == 0){
 				
-				int status = operationService.insertMenuOperation(menu,hotelId);
+				//int status = operationService.insertMenuOperation(menu,hotelId);
 				
 				return "redirect:/homeAdminView";
 			}
