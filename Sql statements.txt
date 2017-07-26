@@ -1,0 +1,177 @@
+Create table users(user_id varchar(50) primary key,full_name varchar(50),contact_no varchar(50),password varchar(50));
+
+Create table perm_hotel_admin(hotel_id varchar(50) primary key, hotel_name varchar(50), location varchar(100), contact_no varchar(10),password varchar(50));
+
+Create table temp_hotel_admin(hotel_id varchar(50) primary key, hotel_name varchar(50), location varchar(100), contact_no varchar(10),password varchar(50));
+
+Create table seats(hotel_id varchar(50),no_of_seats number,booking_date_time TIMESTAMP,foreign key(hotel_id) references perm_hotel_admin(hotel_id),CONSTRAINT pk_seatsId PRIMARY KEY (hotel_id,booking_date_time) );
+
+Create table bookings(user_id varchar(50),booking_id varchar(50) primary key,foreign key(user_id) references users(user_id));
+
+
+Create table booked_seats(booking_id varchar(50),hotel_id varchar(50),no_of_seats number,booking_date_time TIMESTAMP,foreign key(booking_id) references bookings(booking_id),foreign key(hotel_id) references perm_hotel_admin(hotel_id));
+
+
+Create table menu(menu_id varchar(50),hotel_id varchar(50),food_name varchar(50), rate number, veg CHAR(1), category varchar(50),primary key(menu_id,hotel_id));
+
+
+Create table hotel_table(table_id number, hotel_id varchar(50),menu_id varchar(50),quantity number,status varchar(50),foreign key(hotel_id,menu_id) references menu(hotel_id,menu_id));
+
+Create table history(user_id varchar(50),booking_id varchar(50),hotel_id varchar(50),food_name varchar(50),quantity number, feedback number, review varchar(500),foreign key(user_id) 
+references users(user_id),foreign key(booking_id) references bookings(booking_id),foreign key(hotel_id) references perm_hotel_admin(hotel_id));
+
+
+
+create table checked_in(booking_id varchar(50),table_id number,foreign key(booking_id) references bookings(booking_id));
+
+
+
+
+
+drop table hotel_offers;
+drop table offers;
+
+create table offers(hotel_id varchar(50),offer_id varchar(50),menu_id varchar(50),discount number,primary key(hotel_id,offer_id,menu_id),foreign key(hotel_id,menu_id) references menu(hotel_id,menu_id)); 
+select hotel_id,offer_id,menu_id,discount from offers;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import org.springframework.jdbc.core.RowMapper;
+
+import com.nttdata.pune.training.bookmytable.model.beans.History;
+
+public class HistoryRowMapper implements RowMapper<History> {
+	public History mapRow(ResultSet rs, int a) throws SQLException {
+
+		History history=new History();
+		history.setUser_id(rs.getString("user_id"));
+		history.setBooking_id(rs.getString("booking_id"));
+		history.setFood_name(rs.getString("food_name"));
+		history.setHotel_id(rs.getString("hotel_id"));
+		history.setQuantity(rs.getString("quantity"));
+		return history;
+
+}
+
+
+
+
+@Component
+public class EmployeeDaoImpl implements EmployeeDao{
+	@Autowired 
+	private JdbcTemplate dbTemplate;
+
+
+
+	public List<Employee> getAll() {
+		List<Employee> listEmployee=dbTemplate.query("SELECT EMPLOYEE_ID,FULL_NAME,MOBILE_NO,ADDRESS FROM EMPLOYEE", new EmployeeRowMapper());
+		
+		return listEmployee;
+	}
+	public void setJdbcTemplate(JdbcTemplate dbTemplate) {
+		this.dbTemplate = dbTemplate;
+	}
+	public int insertRecord(Employee employee) {
+		// TODO Auto-generated method stub
+		String insertQuery = "insert into EMPLOYEE (EMPLOYEE_ID,FULL_NAME,MOBILE_NO,ADDRESS)  values(" + employee.getEmp_Id()+",'"+employee.getFull_Name()+"',"+employee.getMobile()+",'"+employee.getAddress()+"')";
+		//Object[] obj = new Object[] { employee.getEmp_Id(), employee.getFull_Name(), employee.getMobile(),employee.getAddress() };
+		//int[] types = new int[] { Types.INTEGER, Types.VARCHAR, Types.INTEGER };
+
+		//return dbTemplate.update(insertQuery, obj);
+		//return 0;
+		 int i=dbTemplate.update(insertQuery);
+		 
+		 return i;
+
+	}
+
+	public int updateRecord(Employee employee) {
+		
+		// TODO Auto-generated method stub
+		String updateSql = "UPDATE EMPLOYEE SET FULL_NAME = ? WHERE EMPLOYEE_ID= ?";
+		Object[] obj = new Object[] { "work", employee.getEmp_Id() };
+		return dbTemplate.update(updateSql, obj);
+		//return 0;
+		 //return this.dbTemplate().update(updateSql, new Object[] {"workstation77", employee.getEmp_Id()});
+		  
+        // updateRecord(1,141);
+         //updateRecord(employee);
+
+		//return rows;
+		
+	}
+	/*private void updateRecord(int i, String string) {
+		// TODO Auto-generated method stub
+		
+	}
+*/
+	private JdbcTemplate dbTemplate() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+}
+
+
+
+
